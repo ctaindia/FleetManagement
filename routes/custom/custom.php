@@ -4,7 +4,7 @@
 	use App\Http\Controllers\DriverController;
 	use App\Http\Controllers\VehicleTypeController;
 	use App\Http\Controllers\VehicleController;
-	use App\Http\Controllers\FuelController;
+	use App\Http\Controllers\BatteryStatusController;
 
 	
 	Route::prefix('vendor')->group(function () {
@@ -39,12 +39,12 @@
 		Route::post('update', [VehicleController::class, 'update'])->name('admin.vehicles.update');
 		Route::get('delete/{id}', [VehicleController::class, 'delete'])->name('admin.vehicles.delete');
 	});
-	Route::prefix('fuel')->group(function () {
-		Route::get('list', [FuelController::class, 'index'])->name('admin.fuel.list');
-		Route::get('create', [FuelController::class, 'create'])->name('admin.fuel.create');
-		Route::post('store', [FuelController::class, 'store'])->name('admin.fuel.store');
-		Route::get('edit/{id}', [FuelController::class, 'edit'])->name('admin.fuel.edit');
-		Route::post('update', [FuelController::class, 'update'])->name('admin.fuel.update');
-		Route::get('delete/{id}', [FuelController::class, 'delete'])->name('admin.fuel.delete');
+	Route::prefix('battery-status')->group(function () {
+		Route::get('list', [BatteryStatusController::class, 'index'])->name('admin.battery-status.list');
+		Route::get('create', [BatteryStatusController::class, 'create'])->name('admin.battery-status.create');
+		Route::post('store', [BatteryStatusController::class, 'store'])->name('admin.battery-status.store');
+		Route::get('edit/{id}', [BatteryStatusController::class, 'edit'])->name('admin.battery-status.edit');
+		Route::post('update', [BatteryStatusController::class, 'update'])->name('admin.battery-status.update');
+		Route::get('delete/{id}', [BatteryStatusController::class, 'delete'])->name('admin.battery-status.delete');
 	});
 ?>

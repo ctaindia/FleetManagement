@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Fuel History')
+@section('title', 'Battery status')
 @section('main-content')
 <div class="height-100 bg-light">
     <div class="container dashboard-container">
@@ -9,7 +9,7 @@
                 <ol class="breadcrumb align-items-center">
                   <li class="breadcrumb-item" aria-current="page">Dashboard</li>
                   <li class="breadcrumb-item" aria-current="page"><i class="bx bx-chevron-right"></i></li>
-                  <li class="breadcrumb-item" aria-current="page">Fuel</li>
+                  <li class="breadcrumb-item" aria-current="page">Battery status</li>
                   <li class="breadcrumb-item" aria-current="page"><i class="bx bx-chevron-right"></i></li>
                   <li class="breadcrumb-item active" aria-current="page">Listings</li>
                 </ol>
@@ -61,7 +61,7 @@
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-2 text-center">
-                        <a href="{{route('admin.fuel.create')}}" class="primary-button">Add</a>
+                        <a href="{{route('admin.battery-status.create')}}" class="primary-button">Add</a>
                     </div>
                 </div>
             </div>
@@ -110,8 +110,8 @@
                             <td>{{$fuel->state}}</td>
                             <td>{{$fuel->note}}</td>
                             <td>
-                                <span class="action-button m-1"><a href="{{route('admin.fuel.edit', ['id' => base64_encode($fuel->id)])}}"><i class='bx bxs-edit'></i></a></span>
-                                <span class="action-button m-1"><a onclick="return confirm('are you sure?')" href="{{route('admin.fuel.delete', ['id' => base64_encode($fuel->id)])}}"><i class='bx bxs-trash'></i></a></span>
+                                <span class="action-button m-1"><a href="{{route('admin.battery-status.edit', ['id' => base64_encode($fuel->id)])}}"><i class='bx bxs-edit'></i></a></span>
+                                <span class="action-button m-1"><a onclick="return confirm('are you sure?')" href="{{route('admin.battery-status.delete', ['id' => base64_encode($fuel->id)])}}"><i class='bx bxs-trash'></i></a></span>
                             </td>
                         </tr>
                         @endforeach

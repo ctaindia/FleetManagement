@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
-use App\Models\Fuel;
+use App\Models\BatteryStatus;
 
-class FuelController extends Controller
+class BatteryStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,14 +15,14 @@ class FuelController extends Controller
      */
     public function index()
     {
-        $fuels = Fuel::with('vehicleDetail');
+        $fuels = BatteryStatus::with('vehicleDetail');
         if (auth()->user()->user_type === 2) {
             $vehicleIds = Vehicle::where('vendor_id', auth()->id())->pluck('id');
             $fuels = $fuels->whereIn('vehicle_id', $vehicleIds);
         }
         $fuels = $fuels->get();
         // dd($Fuel);
-        return view('modules.fuel.list', compact('fuels'));
+        return view('modules.battery-status.list', compact('fuels'));
     }
 
     /**
@@ -37,7 +37,7 @@ class FuelController extends Controller
             $vehicles = $vehicles->where('vendor_id', auth()->id());
         }
         $vehicles = $vehicles->get();
-        return view('modules.fuel.add', compact('vehicles'));
+        return view('modules.battery-status.add', compact('vehicles'));
     }
 
     /**
@@ -60,7 +60,7 @@ class FuelController extends Controller
             "note" => "required"
         ]);
 
-        $fuel = new Fuel();
+        $fuel = new BatteryStatus();
         $fuel->vehicle_id = $req->vehicle_id;
         $fuel->start_meter = $req->start_meter;
         $fuel->refference = $req->refference;
@@ -71,7 +71,7 @@ class FuelController extends Controller
         $fuel->note = $req->note;
         $fuel->save();
 
-        return redirect()->route('admin.fuel.list')
+        return redirect()->route('admin.battery-status.list')
         ->with('Success','Fuel Added SuccessFully');
     }
 
@@ -92,15 +92,15 @@ class FuelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($vehicleId)
+    public function edit($batteryStatusId)
     {
         $vehicles = Vehicle::select('*');
         if (auth()->user()->user_type === 2) {
             $vehicles = $vehicles->where('vendor_id', auth()->id());
         }
         $vehicles = $vehicles->get();
-        $fuel = Fuel::find(base64_decode($vehicleId));
-        return view('modules.fuel.edit', compact('fuel', 'vehicles'));
+        $fuel = BatteryStatus::find(base64_decode($batteryStatusId));
+        return view('modules.battery-status.edit', compact('fuel', 'vehicles'));
     }
 
     /**
@@ -125,7 +125,7 @@ class FuelController extends Controller
             "note" => "required"
         ]);
 
-        $fuel = new Fuel();
+        $fuel = BatteryStatus::find(base64_decode($fuel_id));
         $fuel->vehicle_id = $req->vehicle_id;
         $fuel->start_meter = $req->start_meter;
         $fuel->refference = $req->refference;
@@ -148,13 +148,13 @@ class FuelController extends Controller
      */
     public function delete($fuelId)
     {
-        $fuel = Fuel::findOrFail(base64_decode($fuelId));
+        $fuel = BatteryStatus::findOrFail(base64_decode($fuelId));
         if($fuel){
             $fuel->delete();
-            return redirect()->route('admin.fuel.list')
+            return redirect()->route('admin.battery-status.list')
             ->with('Success','fuel deleted SuccessFully');  
         } else {
-            return redirect()->route('admin.fuel.list')
+            return redirect()->route('admin.battery-status.list')
             ->with('Error','Failed');
         }
 
