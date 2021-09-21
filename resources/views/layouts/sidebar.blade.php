@@ -6,10 +6,10 @@
                 @if (auth()->user()->user_type === 1)
                 <a href="{{route('admin.vendor.list')}}" class="nav_link {{request()->routeIs('admin.vendor*')? 'active' : ''}}"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Vendors</span> </a>
                 @endif 
-                <a href="{{route('admin.driver.list')}}" class="nav_link {{request()->routeIs('admin.driver*')? 'active' : ''}}"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Drivers</span> </a> 
-                <a href="{{route('admin.vehicle.type.list')}}" class="nav_link {{request()->routeIs('admin.vehicle.type*')? 'active' : ''}}"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Vehicle Type</span> </a>
-                <a href="{{route('admin.vehicles.list')}}" class="nav_link {{request()->routeIs('admin.vehicles*')? 'active' : ''}}"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Vehicle</span> </a>
-                <a href="{{route('admin.battery-status.list')}}" class="nav_link {{request()->routeIs('admin.battery-status*')? 'active' : ''}}"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Battery Status</span> </a> 
+                <a href="{{route('admin.driver.list')}}" class="nav_link {{request()->routeIs('admin.driver*')? 'active' : ''}}"> <i class='bx bx-id-card nav_icon'></i> <span class="nav_name">Drivers</span> </a> 
+                <a href="{{route('admin.vehicle.type.list')}}" class="nav_link {{request()->routeIs('admin.vehicle.type*')? 'active' : ''}}"> <i class='bx bx-category nav_icon'></i> <span class="nav_name">Vehicle Type</span> </a>
+                <a href="{{route('admin.vehicles.list')}}" class="nav_link {{request()->routeIs('admin.vehicles*')? 'active' : ''}}"> <i class='bx bx-car nav_icon'></i> <span class="nav_name">Vehicle</span> </a>
+                <a href="{{route('admin.battery-status.list')}}" class="nav_link {{request()->routeIs('admin.battery-status*')? 'active' : ''}}"> <i class='bx bxs-car-battery nav_icon'></i> <span class="nav_name">Battery Status</span> </a> 
             </div>
         </div>
         <a href="#" class="nav_link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>

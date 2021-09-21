@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 
 @section('main-content')
-<div class="height-100 bg-light">
+<div class="height-100">
     <div class="container dashboard-container">
         <div class="row">
            <div class="col-12">
@@ -21,7 +21,7 @@
                 <div class="card">
                    <div class="card-upper">
                         <div class="card-image blue">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
+                            <i class="bx bx-user display-6 text-white"></i>
                         </div>
                         <p>Total Vendor</p>
                         <h5 class="text-right"><span class="blue-text">{{$totalVendor}}</span></h5>
@@ -35,7 +35,7 @@
                 <div class="card">
                    <div class="card-upper">
                         <div class="card-image yellow">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
+                            <i class="bx bx-car display-6 text-white"></i>
                         </div>
                         <p>Total Vehicle</p>
                         <h5 class="text-right"><span class="yellow-text">{{$totalVehicle}}</span></h5>
@@ -49,7 +49,7 @@
                 <div class="card">
                    <div class="card-upper">
                         <div class="card-image red">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
+                            <i class="bx bx-car display-6 text-white"></i>
                         </div>
                         <p>Active Vehicles</p>
                         <h5 class="text-right"><span class="red-text">{{$activeVehicle}}</span></h5>
@@ -63,7 +63,7 @@
                 <div class="card">
                    <div class="card-upper">
                         <div class="card-image green">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
+                            <i class="bx bx-map display-6 text-white"></i>
                         </div>
                         <p>Total KMs Driven</p>
                         <h5 class="text-right"><span class="green-text">00.00</span></h5>
@@ -79,7 +79,7 @@
                 <div class="card">
                    <div class="card-upper">
                         <div class="card-image green">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
+                            <i class="bx bx-map display-6 text-white"></i>
                         </div>
                         <p>Today's KM</p>
                         <h5 class="text-right"><span class="green-text">00.00</span></h5>
@@ -99,7 +99,7 @@
                 <div class="card">
                    <div class="card-upper">
                         <div class="card-image yellow">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
+                            <i class="bx bx-car display-6 text-white"></i>
                         </div>
                         <p>Total Vehicle</p>
                         <h5 class="text-right"><span class="yellow-text">{{$totalVehicle}}</span></h5>
@@ -113,7 +113,7 @@
                 <div class="card">
                    <div class="card-upper">
                         <div class="card-image red">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
+                            <i class="bx bx-car display-6 text-white"></i>
                         </div>
                         <p>Active Vehicles</p>
                         <h5 class="text-right"><span class="red-text">{{$activeVehicle}}</span></h5>
@@ -127,7 +127,7 @@
                 <div class="card">
                    <div class="card-upper">
                         <div class="card-image green">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
+                            <i class="bx bx-map display-6 text-white"></i>
                         </div>
                         <p>Total KMs Driven</p>
                         <h5 class="text-right"><span class="green-text">00.00</span></h5>
@@ -141,7 +141,7 @@
                 <div class="card">
                    <div class="card-upper">
                         <div class="card-image blue">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
+                            <i class="bx bx-map display-6 text-white"></i>
                         </div>
                         <p>Today's KM</p>
                         <h5 class="text-right"><span class="blue-text">00.00</span></h5>
@@ -154,104 +154,98 @@
         </div>
         @endif
         
-        {{-- <div class="row mt-5">
-            <div class="col-lg-6">
-                <div class="graph-container p-3">
-                    <img src="{{asset('assets/image/graph.png')}}" alt="" class="img-fluid">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="graph-container p-3">
-                    <img src="{{asset('assets/image/grafik.png')}}" alt="" class="img-fluid">
-                </div>
-            </div>
-        </div>
+         
         <div class="row mt-5">
             <div class="col-lg-12">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <select name="per-page" id="" class="select-heading">
-                            <option value="10">10/page</option>
-                            <option value="10">20/page</option>
+                    <div class="col-lg-12 text-right mb-3">
+                        <label for=""><i class='bx bx-filter-alt nav_icon'></i>Filter</label>
+                        <select name="per-page" id="vehicleSelcet" class="select-heading" onchange="loadMap(this.value)">
+                            <option value="">All Vehicles</option>
+                            @foreach ($vehicles as $vehicle)
+                                <option value="{{$vehicle->id}}">{{$vehicle->vehicle_model}}</option>
+                            @endforeach
                         </select>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" placeholder="Search.....">
-                            <button><i class='bx bx-search-alt-2'></i></button>
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
-                        <th>Serial No</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Field 4</th>
-                        <th>Field 5</th>
-                        <th>Field 6</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>John  Doe</td>
-                            <td>Recent</td>
-                            <td>Lorem ipsm</td>
-                            <td>Lorem ipsm</td>
-                            <td>Lorem ipsm</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                            <td>
-                                <span class="action-button"><a><i class='bx bxs-trash'></i></a></span>
-                                <span class="action-button"><a><i class='bx bxs-edit'></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John  Doe</td>
-                            <td>Recent</td>
-                            <td>Lorem ipsm</td>
-                            <td>Lorem ipsm</td>
-                            <td>Lorem ipsm</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                            <td>
-                                <span class="action-button"><a><i class='bx bxs-trash'></i></a></span>
-                                <span class="action-button"><a><i class='bx bxs-edit'></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John  Doe</td>
-                            <td>Recent</td>
-                            <td>Lorem ipsm</td>
-                            <td>Lorem ipsm</td>
-                            <td>Lorem ipsm</td>
-                            <td><span class="badge bg-danger">Inactive</span></td>
-                            <td>
-                                <span class="action-button"><a><i class='bx bxs-trash'></i></a></span>
-                                <span class="action-button"><a><i class='bx bxs-edit'></i></a></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>John  Doe</td>
-                            <td>Recent</td>
-                            <td>Lorem ipsm</td>
-                            <td>Lorem ipsm</td>
-                            <td>Lorem ipsm</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                            <td>
-                                <span class="action-button"><a><i class='bx bxs-trash'></i></a></span>
-                                <span class="action-button"><a><i class='bx bxs-edit'></i></a></span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-12">
+                <div id="map" style="height: 400px; width: 100%; overflow: hidden;"></div>
             </div>
-        </div> --}}
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            
+        </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+    function initMap() {
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 11,
+        center: { lat: 22.60807709934321, lng: 88.36398185737436 }
+      });
+      setMarkers(map);
+      function setMarkers(map) {
+        for (let i = 0; i < locations.length; i++) {
+            const location = locations[i];
+            console.log(location);
+            const infowindow = new google.maps.InfoWindow({
+                content: "<p>"+location['vn']+"</p><p>Driver: "+location['driver']+"</p>",
+            });
+            const marker = new google.maps.Marker({
+                position: { lat: location['lat'], lng: location['lng'] },
+                map,
+                icon: "{{asset('assets/image/car2.png')}}",
+                // label: location['vn'],
+            });
+            marker.addListener("click", () => {
+                infowindow.open({
+                    anchor: marker,
+                    map,
+                    shouldFocus: false,
+                });
+            });
+        }
+      }
+    }
+    let locations = [];
+    
+    function loadMap(vehicleId = '') {
+        // alert(vehicleId)
+        $.ajax({
+            type:"POST",
+            url:"{{route('get.vehicle.location')}}",
+            data:{_token: "{{csrf_token()}}", vehicleId: vehicleId},
+            success:function(data) {
+                if(data.error == false){
+                    if(data.data.length > 0) {
+                    locations = [];
+                    $.each(data.data, function(index, value){
+                        // map view
+                        let lat = Number(value?.lat || 0);
+                        let lng = Number(value?.lon || 0);
+                        let vn = value.vehicle_model;
+                        locations.push({ lat : lat, lng : lng , vn: vn, driver: value.driver.name });
+                        initMap();
+                    })
+                    }
+                }
+            }
+        });
+    }
+
+    window.onload = function () {
+      // Initial function call
+      loadMap();
+      setInterval(function () {
+        // Invoke function every 10 minutes
+        loadMap();
+      }, 600000);
+    }
+</script>
 @endsection

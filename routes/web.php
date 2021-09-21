@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VehicleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use App\Http\Controllers\ProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('cache', function () {
 
@@ -52,3 +54,7 @@ Route::get('payment/successfull/thankyou/{stripeTransactionId}','StripePaymentCo
 // Route::group(['prefix'=>'vendor', 'middleware'=>'vendor'],function(){
 // 	require 'custom/custom.php';
 // });
+
+
+//api routes
+Route::post('get-vehicle-location', [VehicleController::class, 'getVehicleLiveLocation'])->name('get.vehicle.location');

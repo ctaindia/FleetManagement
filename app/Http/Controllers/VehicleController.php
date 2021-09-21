@@ -187,4 +187,28 @@ class VehicleController extends Controller
         }
 
     }
+
+    /**
+     * Get the location of vehicles(lat, lon).
+     *
+     * @param  \Illuminate\Http\Request  $req
+     * @return \Illuminate\Http\Response
+     */
+    public function getVehicleLiveLocation(Request $req)
+    {
+        // dd($req->all());
+        $locations = Vehicle::select('*');
+        if (auth()->user()->user_type === 2) {
+            $locations = $locations->where('vendor_id', auth()->id());
+        }
+        if ($req->vehicleId) {
+            // dd($req->vehicleId);
+            $locations = $locations->where('id', $req->vehicleId);
+            // $locations = $locations->get();
+            // dd($locations);
+        }
+        $locations = $locations->with('driver')->get();
+        // dd($locations);
+        return response()->json(['error'=> false, 'message'=> 'Vehicle locations', 'data' => $locations]);
+    }
 }

@@ -16,9 +16,10 @@ class DashboardController extends Controller
             $totalVehicle = $totalVehicle->where('vendor_id', auth()->id());
             $activeVehicle = $activeVehicle->where('vendor_id', auth()->id());
         }
+        $vehicles = $activeVehicle;
         $totalVehicle = $totalVehicle->count();
         $activeVehicle = $activeVehicle->count();
         $totalVendor = User::where('user_type', 2)->get()->count();
-        return view('modules.dashboard', compact('totalVehicle', 'activeVehicle', 'totalVendor'));
+        return view('modules.dashboard', compact('totalVehicle', 'activeVehicle', 'totalVendor', 'vehicles'));
     }
 }
