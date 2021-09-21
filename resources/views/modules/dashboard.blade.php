@@ -13,8 +13,24 @@
               </nav>
            </div>
         </div>
+
+        {{-- admin dashboard --}}
         @if (auth()->user()->user_type === 1)
         <div class="row mt-5 card-container">
+            <div class="col-lg-3">
+                <div class="card">
+                   <div class="card-upper">
+                        <div class="card-image blue">
+                            <img src="{{asset('assets/image/folder.png')}}" alt="">
+                        </div>
+                        <p>Total Vendor</p>
+                        <h5 class="text-right"><span class="blue-text">{{$totalVendor}}</span></h5>
+                   </div>
+                   <div class="card-bottom">
+                        <p class="text-muted"><i class='bx bxs-purchase-tag'></i> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+            </div>
             <div class="col-lg-3">
                 <div class="card">
                    <div class="card-upper">
@@ -46,20 +62,6 @@
             <div class="col-lg-3">
                 <div class="card">
                    <div class="card-upper">
-                        <div class="card-image blue">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
-                        </div>
-                        <p>Total Vendor</p>
-                        <h5 class="text-right"><span class="blue-text">{{$totalVendor}}</span></h5>
-                   </div>
-                   <div class="card-bottom">
-                        <p class="text-muted"><i class='bx bxs-purchase-tag'></i> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="card">
-                   <div class="card-upper">
                         <div class="card-image green">
                             <img src="{{asset('assets/image/folder.png')}}" alt="">
                         </div>
@@ -71,7 +73,6 @@
                     </div>
                 </div>
             </div>
-            
         </div>
         <div class="row mt-5">
             <div class="col-lg-3">
@@ -90,6 +91,8 @@
             </div>
         </div>
         @endif
+
+        {{-- vendor dashboard --}}
         @if (auth()->user()->user_type === 2)
         <div class="row mt-5 card-container">
             <div class="col-lg-3">
