@@ -200,7 +200,7 @@
             const marker = new google.maps.Marker({
                 position: { lat: location['lat'], lng: location['lng'] },
                 map,
-                icon: "{{asset('assets/image/car2.png')}}",
+                icon: "{{asset('assets/image/gps.svg')}}",
                 // label: location['vn'],
             });
             marker.addListener("click", () => {
