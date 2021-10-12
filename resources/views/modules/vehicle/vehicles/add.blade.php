@@ -3,7 +3,7 @@
 @section('title', 'Vehicle add')
 
 @section('main-content')
-<div class="height-100 bg-light">
+<div class="height-100">
     <div class="container dashboard-container">
         <div class="row">
            <div class="col-12">
@@ -101,7 +101,7 @@
                     <div class="col-lg-6 pl-0">
                         <div class="form-group">
                             <label for="field1">Vin no</label>
-                            <input type="text" class="form-control @error('vin_no') is-invalid @enderror" value="{{old('vin_no')}}" name="vin_no" placeholder="driving license no">
+                            <input type="text" class="form-control @error('vin_no') is-invalid @enderror" value="{{old('vin_no')}}" name="vin_no" placeholder="VIN number">
                         </div>
                         @error('vin_no')
                             <span class="text-danger">{{$message}}</span>

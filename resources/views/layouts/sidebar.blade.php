@@ -10,6 +10,9 @@
                 <a href="{{route('admin.vehicle.type.list')}}" class="nav_link {{request()->routeIs('admin.vehicle.type*')? 'active' : ''}}"> <i class='bx bx-category nav_icon'></i> <span class="nav_name">Vehicle Type</span> </a>
                 <a href="{{route('admin.vehicles.list')}}" class="nav_link {{request()->routeIs('admin.vehicles*')? 'active' : ''}}"> <i class='bx bx-car nav_icon'></i> <span class="nav_name">Vehicle</span> </a>
                 <a href="{{route('admin.battery-status.list')}}" class="nav_link {{request()->routeIs('admin.battery-status*')? 'active' : ''}}"> <i class='bx bxs-car-battery nav_icon'></i> <span class="nav_name">Battery Details</span> </a> 
+                @if (auth()->user()->user_type === 1)
+                <a href="{{route('admin.geo-fencing.index')}}" class="nav_link {{request()->routeIs('admin.geo-fencing*')? 'active' : ''}}"> <i class='bx bx-map-pin nav_icon'></i> <span class="nav_name">Geo Fencing</span> </a>
+                @endif
             </div>
         </div>
         <a href="#" class="nav_link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">SignOut</span> </a>

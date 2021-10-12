@@ -5,6 +5,7 @@
 	use App\Http\Controllers\VehicleTypeController;
 	use App\Http\Controllers\VehicleController;
 	use App\Http\Controllers\BatteryDetailsController;
+	use App\Http\Controllers\GeoFencingController;
 
 	
 	Route::prefix('vendor')->group(function () {
@@ -46,5 +47,14 @@
 		Route::get('edit/{id}', [BatteryDetailsController::class, 'edit'])->name('admin.battery-status.edit');
 		Route::post('update', [BatteryDetailsController::class, 'update'])->name('admin.battery-status.update');
 		Route::get('delete/{id}', [BatteryDetailsController::class, 'delete'])->name('admin.battery-status.delete');
+	});
+	Route::prefix('geo-fencing')->group(function () {
+		Route::get('/', [GeoFencingController::class, 'index'])->name('admin.geo-fencing.index');
+		Route::get('create', [GeoFencingController::class, 'create'])->name('admin.geo-fencing.create');
+		Route::post('store', [GeoFencingController::class, 'store'])->name('admin.geo-fencing.store');
+		Route::get('detail/{id}', [GeoFencingController::class, 'detail'])->name('admin.geo-fencing.detail');
+		Route::get('edit/{id}', [GeoFencingController::class, 'edit'])->name('admin.geo-fencing.edit');
+		Route::post('update', [GeoFencingController::class, 'update'])->name('admin.geo-fencing.update');
+		Route::get('delete/{id}', [GeoFencingController::class, 'delete'])->name('admin.geo-fencing.delete');
 	});
 ?>

@@ -32,6 +32,14 @@
         @elseif(Session::has('Errors'))
             swal('Error','{{Session::get('Errors')}}', 'error');
         @endif
+
+        function isNumberKey(evt) {
+            if( (evt.charCode >= 48 && evt.charCode <= 57) || evt.charCode === 46 ) {
+                return true;
+            }
+            return false;
+        }
+        function initMap() {}
     </script>
     @yield('script')
 </body>

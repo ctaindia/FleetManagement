@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Vehicle list')
 @section('main-content')
-<div class="height-100 bg-light">
+<div class="height-100">
     <div class="container dashboard-container">
         <div class="row">
            <div class="col-12">

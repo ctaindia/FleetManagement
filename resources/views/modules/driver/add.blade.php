@@ -124,8 +124,8 @@
                     </div>
                     <div class="col-lg-6 pl-0">
                         <div class="form-group">
-                            <label for="field1">Facbook Url</label>
-                            <input type="text" class="form-control @error('fb_profile') is-invalid @enderror" value="{{old('fb_profile')}}" name="fb_profile" placeholder="driving license no">
+                            <label for="field1">Facebook Url</label>
+                            <input type="text" class="form-control @error('fb_profile') is-invalid @enderror" value="{{old('fb_profile')}}" name="fb_profile" placeholder="Facebook profile URL">
                         </div>
                         @error('fb_profile')
                             <span class="text-danger">{{$message}}</span>
@@ -134,7 +134,7 @@
                     <div class="col-lg-6 pl-0">
                         <div class="form-group">
                             <label for="field1">Instagram Url</label>
-                            <input type="text" class="form-control @error('ig_profile') is-invalid @enderror" value="{{old('ig_profile')}}" name="ig_profile" placeholder="driving license no">
+                            <input type="text" class="form-control @error('ig_profile') is-invalid @enderror" value="{{old('ig_profile')}}" name="ig_profile" placeholder="Instagram profile URL">
                         </div>
                         @error('ig_profile')
                             <span class="text-danger">{{$message}}</span>
@@ -143,7 +143,7 @@
                     <div class="col-lg-6 pl-0">
                         <div class="form-group">
                             <label for="field1">Twitter Profile</label>
-                            <input type="text" class="form-control @error('twitter_profile') is-invalid @enderror" value="{{old('twitter_profile')}}" name="twitter_profile" placeholder="driving license no">
+                            <input type="text" class="form-control @error('twitter_profile') is-invalid @enderror" value="{{old('twitter_profile')}}" name="twitter_profile" placeholder="Twitter profile URL">
                         </div>
                         @error('twitter_profile')
                             <span class="text-danger">{{$message}}</span>
