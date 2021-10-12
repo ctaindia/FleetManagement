@@ -21,7 +21,7 @@
                 <div class="card d-flex flex-row justify-content-between align-items-center p-3">
                     <div class="card-left">
                         <h5 class="yellow-text mb-0">Total</h5>
-                        <p><span>230</span></p>
+                        <p><span>{{$vehicles->count()}}</span></p>
                     </div>
                     <div class="card-right">
                         <div class="card-image-wrapper yellow">
@@ -34,7 +34,7 @@
                 <div class="card d-flex flex-row justify-content-between align-items-center p-3">
                     <div class="card-left">
                         <h5 class="red-text mb-0">Total</h5>
-                        <p><span>230</span></p>
+                        <p><span>{{$activeVehicles}}</span></p>
                     </div>
                     <div class="card-right">
                         <div class="card-image-wrapper red">
@@ -47,7 +47,7 @@
                 <div class="card d-flex flex-row justify-content-between align-items-center p-3">
                     <div class="card-left">
                         <h5 class="blue-text mb-0">Total</h5>
-                        <p><span>230</span></p>
+                        <p><span>{{$inActiveVehicles}}</span></p>
                     </div>
                     <div class="card-right">
                         <div class="card-image-wrapper blue">
@@ -88,14 +88,14 @@
                     <thead>
                         <th>Sl.</th>
                         <th>Driver</th>
-                        <th>Image</th>
+                        {{-- <th>Image</th> --}}
                         <th>Maker</th>
                         <th>Engiene Model</th>
                         <th>Vehicle Model</th>
                         <th>Horse Power</th>
                         <th>Vehicle Type</th>
-                        <th>mielege</th>
-                        <th>License No</th>
+                        <th>Vin no</th>
+                        <th>Registration No</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
@@ -103,14 +103,14 @@
                         <tr>
                             <td>{{$key+1}}</td>
                             <td><a href="{{route('admin.driver.list', ['id' => base64_encode($vehicle->driver->id)])}}">{{$vehicle->driver->name}}</a></td>
-                            <td><img src="{{asset($vehicle->vehicle_image)}}" alt="driver image" width="70"></td>
+                            {{-- <td><img src="{{asset($vehicle->vehicle_image)}}" alt="driver image" width="70"></td> --}}
                             <td>{{$vehicle->maker_name}}</td>
                             <td>{{$vehicle->engine_model}}</td>
                             <td>{{$vehicle->vehicle_model}}</td>
                             <td>{{$vehicle->vehicle_hp}}</td>
                             <td><a href="{{route('admin.vehicle.type.list', ['id' => base64_encode($vehicle->vehicleType->id)])}}">{{$vehicle->vehicleType->name}}</a></td>
-                            <td>{{$vehicle->mielege}}</td>
-                            <td>{{$vehicle->liscence_no}}</td>
+                            <td>{{$vehicle->vin_no}}</td>
+                            <td>{{$vehicle->registration_no}}</td>
                             <td>
                                 <span class="action-button m-1"><a href="{{route('admin.vehicles.edit', ['id' => base64_encode($vehicle->id)])}}"><i class='bx bxs-edit'></i></a></span>
                                 <span class="action-button m-1"><a onclick="return confirm('are you sure?')" href="{{route('admin.vehicles.delete', ['id' => base64_encode($vehicle->id)])}}"><i class='bx bxs-trash'></i></a></span>

@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
-@section('title', 'Battery status add')
+@section('title', 'Battery details add')
 
 @section('main-content')
-<div class="height-100 bg-light">
+<div class="height-100">
     <div class="container dashboard-container">
         <div class="row">
            <div class="col-12">
@@ -11,7 +11,7 @@
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item" aria-current="page">Dashboard</li>
                   <li class="breadcrumb-item" aria-current="page"><i class="bx bx-chevron-right"></i></li>
-                  <li class="breadcrumb-item" aria-current="page">Battery status</li>
+                  <li class="breadcrumb-item" aria-current="page">Battery Details</li>
                   <li class="breadcrumb-item" aria-current="page"><i class="bx bx-chevron-right"></i></li>
                   <li class="breadcrumb-item active" aria-current="page">Add</li>
                 </ol>
@@ -63,6 +63,34 @@
                             <input type="text" class="form-control @error('qty') is-invalid @enderror" placeholder="Qty" value="{{old('qty')}}" name="qty">
                         </div>
                         @error('qty')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    
+                    <div class="col-lg-6 pl-0">
+                        <div class="form-group">
+                            <label for="field1">Type</label>
+                            <input type="text" class="form-control @error('type') is-invalid @enderror" placeholder="type" value="{{old('type')}}" name="type">
+                        </div>
+                        @error('qty')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="col-lg-6 pl-0">
+                        <div class="form-group">
+                            <label for="field1">Capacity</label>
+                            <input type="text" class="form-control @error('capacity') is-invalid @enderror" placeholder="capacity" value="{{old('capacity')}}" name="capacity">
+                        </div>
+                        @error('qty')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="col-lg-6 pl-0">
+                        <div class="form-group">
+                            <label for="field1">Brand</label>
+                            <input type="text" class="form-control @error('brand') is-invalid @enderror" placeholder="brand" value="{{old('brand')}}" name="brand">
+                        </div>
+                        @error('brand')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>

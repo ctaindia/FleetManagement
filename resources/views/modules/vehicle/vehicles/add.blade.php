@@ -25,7 +25,7 @@
             <form action="{{route('admin.vehicles.store')}}" method="POST" class="add-form" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-lg-6 pl-0">
+                    {{-- <div class="col-lg-6 pl-0">
                         <div class="form-group">
                             <label for="field1">Image</label>
                             <input type="file" class="form-control @error('vehicle_image') is-invalid @enderror" value="{{old('vehicle_image')}}" name="vehicle_image">
@@ -33,7 +33,7 @@
                         @error('vehicle_image')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="col-lg-6 pl-0">
                         <div class="form-group">
                             <label for="field1">Driver</label>
@@ -100,19 +100,19 @@
                     </div>
                     <div class="col-lg-6 pl-0">
                         <div class="form-group">
-                            <label for="field1">Mielege</label>
-                            <input type="text" class="form-control @error('mielege') is-invalid @enderror" value="{{old('mielege')}}" name="mielege" placeholder="driving license no">
+                            <label for="field1">Vin no</label>
+                            <input type="text" class="form-control @error('vin_no') is-invalid @enderror" value="{{old('vin_no')}}" name="vin_no" placeholder="driving license no">
                         </div>
-                        @error('mielege')
+                        @error('vin_no')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="col-lg-6 pl-0">
                         <div class="form-group">
-                            <label for="field1">License No</label>
-                            <input type="text" class="form-control @error('liscence_no') is-invalid @enderror" value="{{old('liscence_no')}}" name="liscence_no" placeholder="License no">
+                            <label for="field1">Registration No</label>
+                            <input type="text" class="form-control @error('registration_no') is-invalid @enderror" value="{{old('registration_no')}}" name="registration_no" placeholder="Vehicle registration number">
                         </div>
-                        @error('liscence_no')
+                        @error('registration_no')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>

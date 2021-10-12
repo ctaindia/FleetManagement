@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Driver edit')
 @section('main-content')
-<div class="height-100 bg-light">
+<div class="height-100">
     <div class="container dashboard-container">
         <div class="row">
            <div class="col-12">
@@ -120,7 +120,34 @@
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 pl-0">
+                        <div class="form-group">
+                            <label for="field1">Facbook Url</label>
+                            <input type="text" class="form-control @error('fb_profile') is-invalid @enderror" value="{{$driver->driverInfo->fb_profile}}" name="fb_profile" placeholder="driving license no">
+                        </div>
+                        @error('fb_profile')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="col-lg-6 pl-0">
+                        <div class="form-group">
+                            <label for="field1">Instagram Url</label>
+                            <input type="text" class="form-control @error('ig_profile') is-invalid @enderror" value="{{$driver->driverInfo->ig_profile}}" name="ig_profile" placeholder="driving license no">
+                        </div>
+                        @error('ig_profile')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="col-lg-6 pl-0">
+                        <div class="form-group">
+                            <label for="field1">Twitter Profile</label>
+                            <input type="text" class="form-control @error('twitter_profile') is-invalid @enderror" value="{{$driver->driverInfo->twitter_profile}}" name="twitter_profile" placeholder="driving license no">
+                        </div>
+                        @error('twitter_profile')
+                            <span class="text-danger">{{$message}}</span>
+                        @enderror
+                    </div>
+                    <div class="col-lg-12">
                         <button class="primary-button">Submit</button>
                     </div>
                 </div>

@@ -22,8 +22,10 @@ class VendorController extends Controller
             $vendors = $vendors->where('id', base64_decode($vendorId))  ;
         }
         $vendors = $vendors->with('vendorInfo')->get();
+        $activeVendors = $vendors->where('status',1)->count();
+        $inActiveVendors = $vendors->where('status',0)->count();
         // dd($vendors);
-        return view('modules.vendor.list', compact('vendors'));
+        return view('modules.vendor.list', compact('vendors','activeVendors', 'inActiveVendors'));
     }
 
     /**

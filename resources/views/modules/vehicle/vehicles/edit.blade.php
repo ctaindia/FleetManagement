@@ -23,14 +23,14 @@
             <form action="{{route('admin.vehicles.update')}}" method="POST" class="add-form" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="vehicleId" value="{{base64_encode($vehicle->id)}}">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-6 pl-0">
                         <label for="field1">Existing Image</label>
                         <img src="{{asset($vehicle->vehicle_image)}}" alt="" width="100">
                     </div>
-                </div>
+                </div> --}}
                 <div class="row">
-                    <div class="col-lg-6 pl-0">
+                    {{-- <div class="col-lg-6 pl-0">
                         <div class="form-group">
                             <label for="field1">Image</label>
                             <input type="file" class="form-control @error('vehicle_image') is-invalid @enderror" value="{{old('vehicle_image')}}" name="vehicle_image">
@@ -38,7 +38,7 @@
                         @error('vehicle_image')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="col-lg-6 pl-0">
                         <div class="form-group">
                             <label for="field1">Driver</label>
@@ -105,19 +105,19 @@
                     </div>
                     <div class="col-lg-6 pl-0">
                         <div class="form-group">
-                            <label for="field1">Mielege</label>
-                            <input type="text" class="form-control @error('mielege') is-invalid @enderror" value="{{$vehicle->mielege}}" name="mielege" placeholder="driving license no">
+                            <label for="field1">Vin no</label>
+                            <input type="text" class="form-control @error('vin_no') is-invalid @enderror" value="{{$vehicle->vin_no}}" name="vin_no" placeholder="driving license no">
                         </div>
-                        @error('mielege')
+                        @error('vin_no')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
                     <div class="col-lg-6 pl-0">
                         <div class="form-group">
-                            <label for="field1">License No</label>
-                            <input type="text" class="form-control @error('liscence_no') is-invalid @enderror" value="{{$vehicle->liscence_no}}" name="liscence_no" placeholder="driving license no">
+                            <label for="field1">Registration No</label>
+                            <input type="text" class="form-control @error('registration_no') is-invalid @enderror" value="{{$vehicle->registration_no}}" name="registration_no" placeholder="Vehicle registration number">
                         </div>
-                        @error('liscence_no')
+                        @error('registration_no')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>

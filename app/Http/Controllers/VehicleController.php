@@ -26,7 +26,9 @@ class VehicleController extends Controller
         }
         $vehicles = $vehicles->with('vehicleType')->get();
         // dd($vehicles);
-        return view('modules.vehicle.vehicles.list', compact('vehicles'));
+        $activeVehicles = $vehicles->where('status',1)->count();
+        $inActiveVehicles = $vehicles->where('status',0)->count();
+        return view('modules.vehicle.vehicles.list', compact('vehicles', 'activeVehicles', 'inActiveVehicles'));
     }
 
     /**
@@ -62,9 +64,9 @@ class VehicleController extends Controller
             "vehicle_model" => 'required',
             "vehicle_hp" => 'required|numeric',
             "vehicle_type_id" => 'required|numeric|min:1',
-            "mielege" => 'required|numeric',
-            "liscence_no" => 'required',
-            "vehicle_image" => 'required|mimes:jpg,jpeg,png,gif'
+            "vin_no" => 'required',
+            "registration_no" => 'required',
+            // "vehicle_image" => 'mimes:jpg,jpeg,png,gif'
         ]);
 
         $vehicle = new Vehicle();
@@ -76,15 +78,15 @@ class VehicleController extends Controller
         $vehicle->vehicle_model = $req->vehicle_model;
         $vehicle->vehicle_hp = $req->vehicle_hp;
         $vehicle->vehicle_type_id = $req->vehicle_type_id;
-        $vehicle->mielege = $req->mielege;
-        $vehicle->liscence_no = $req->liscence_no;
-        if($req->hasFile('vehicle_image')){
-            $driverImage = $req->file('vehicle_image');
-            $random = randomGenerator();
-            $driverImage->move('upload/vehicles/',$random.'.'.$driverImage->getClientOriginalExtension());
-            $driverImageurl = 'upload/vehicles/'.$random.'.'.$driverImage->getClientOriginalExtension();
-            $vehicle->vehicle_image = $driverImageurl;
-        }
+        $vehicle->vin_no = $req->vin_no;
+        $vehicle->registration_no = $req->registration_no;
+        // if($req->hasFile('vehicle_image')){
+        //     $driverImage = $req->file('vehicle_image');
+        //     $random = randomGenerator();
+        //     $driverImage->move('upload/vehicles/',$random.'.'.$driverImage->getClientOriginalExtension());
+        //     $driverImageurl = 'upload/vehicles/'.$random.'.'.$driverImage->getClientOriginalExtension();
+        //     $vehicle->vehicle_image = $driverImageurl;
+        // }
         $vehicle->save();
 
         return redirect()->route('admin.vehicles.list')
@@ -139,9 +141,9 @@ class VehicleController extends Controller
             "vehicle_model" => 'required',
             "vehicle_hp" => 'required|numeric',
             "vehicle_type_id" => 'required|numeric|min:1',
-            "mielege" => 'required|numeric',
-            "liscence_no" => 'required',
-            "vehicle_image" => 'mimes:jpg,jpeg,png,gif'
+            "vin_no" => 'required',
+            "registration_no" => 'required',
+            // "vehicle_image" => 'mimes:jpg,jpeg,png,gif'
         ]);
 
         $vehicle = Vehicle::find(base64_decode($req->vehicleId));
@@ -153,15 +155,15 @@ class VehicleController extends Controller
         $vehicle->vehicle_model = $req->vehicle_model;
         $vehicle->vehicle_hp = $req->vehicle_hp;
         $vehicle->vehicle_type_id = $req->vehicle_type_id;
-        $vehicle->mielege = $req->mielege;
-        $vehicle->liscence_no = $req->liscence_no;
-        if($req->hasFile('vehicle_image')){
-            $driverImage = $req->file('vehicle_image');
-            $random = randomGenerator();
-            $driverImage->move('upload/vehicles/',$random.'.'.$driverImage->getClientOriginalExtension());
-            $driverImageurl = 'upload/vehicles/'.$random.'.'.$driverImage->getClientOriginalExtension();
-            $vehicle->vehicle_image = $driverImageurl;
-        }
+        $vehicle->vin_no = $req->vin_no;
+        $vehicle->registration_no = $req->registration_no;
+        // if($req->hasFile('vehicle_image')){
+        //     $driverImage = $req->file('vehicle_image');
+        //     $random = randomGenerator();
+        //     $driverImage->move('upload/vehicles/',$random.'.'.$driverImage->getClientOriginalExtension());
+        //     $driverImageurl = 'upload/vehicles/'.$random.'.'.$driverImage->getClientOriginalExtension();
+        //     $vehicle->vehicle_image = $driverImageurl;
+        // }
         $vehicle->save();
 
         return redirect()->route('admin.vehicles.list')

@@ -27,8 +27,10 @@ class DriverController extends Controller
             $drivers = $drivers->where('id', base64_decode($driverId))  ;
         }
         $drivers = $drivers->with('driverInfo')->get();
+        $activeDrivers = $drivers->where('status',1)->count();
+        $inActiveDrivers = $drivers->where('status',0)->count();
         // dd($drivers);
-        return view('modules.driver.list', compact('drivers'));
+        return view('modules.driver.list', compact('drivers', 'activeDrivers', 'inActiveDrivers'));
     }
 
     /**
@@ -59,7 +61,10 @@ class DriverController extends Controller
             "pan_no" => 'required',
             "aadhar_no" => 'required',
             "driving_license" => 'required',
-            "driver_image" => 'required'
+            "driver_image" => 'required|mimes:jpg,jpeg,png,svg,gif',
+            "fb_profile" => 'string',
+            "ig_profile" => 'string',
+            "twitter_profile" => 'string'
         ]);
         $driver = new DriverDetail();
         $user = new User();
@@ -90,6 +95,9 @@ class DriverController extends Controller
         $driver->pan_no = $req->pan_no;
         $driver->aadhar_no = $req->aadhar_no;
         $driver->driving_license = $req->driving_license;
+        $driver->fb_profile = $req->fb_profile;
+        $driver->ig_profile = $req->ig_profile;
+        $driver->twitter_profile = $req->twitter_profile;
         $driver->save();
 
         return redirect()->route('admin.driver.list')
@@ -136,7 +144,10 @@ class DriverController extends Controller
             "pan_no" => 'required',
             "aadhar_no" => 'required',
             "driving_license" => 'required',
-            "driver_image" => ''
+            "driver_image" => 'mimes:jpg,jpeg,png,svg,gif',
+            "fb_profile" => 'string',
+            "ig_profile" => 'string',
+            "twitter_profile" => 'string'
         ]);
         
         $user = User::find(base64_decode($req->driverId));
@@ -173,6 +184,9 @@ class DriverController extends Controller
         $driver->pan_no = $req->pan_no;
         $driver->aadhar_no = $req->aadhar_no;
         $driver->driving_license = $req->driving_license;
+        $driver->fb_profile = $req->fb_profile;
+        $driver->ig_profile = $req->ig_profile;
+        $driver->twitter_profile = $req->twitter_profile;
         $driver->save();
 
         return redirect()->route('admin.driver.list')

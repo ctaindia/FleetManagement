@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFuelsTable extends Migration
+class CreateBatteryDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateFuelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fuels', function (Blueprint $table) {
+        Schema::create('battery_details', function (Blueprint $table) {
             $table->id();
             $table->integer('vehicle_id');
             $table->float('start_meter', 8,2);
             $table->string('refference');
             $table->integer('qty');
+            $table->string('type');
+            $table->string('capacity');
+            $table->string('brand');
             $table->float('price', 8,2);
             $table->date('date');
             $table->string('state');
@@ -36,6 +39,6 @@ class CreateFuelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fuels');
+        Schema::dropIfExists('battery_details');
     }
 }

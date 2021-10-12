@@ -22,36 +22,10 @@
                 <div class="card d-flex flex-row justify-content-between align-items-center p-3">
                     <div class="card-left">
                         <h5 class="yellow-text mb-0">Total</h5>
-                        <p><span>230</span></p>
+                        <p><span>{{$vehicleTypes->count()}}</span></p>
                     </div>
                     <div class="card-right">
                         <div class="card-image-wrapper yellow">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card d-flex flex-row justify-content-between align-items-center p-3">
-                    <div class="card-left">
-                        <h5 class="red-text mb-0">Total</h5>
-                        <p><span>230</span></p>
-                    </div>
-                    <div class="card-right">
-                        <div class="card-image-wrapper red">
-                            <img src="{{asset('assets/image/folder.png')}}" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card d-flex flex-row justify-content-between align-items-center p-3">
-                    <div class="card-left">
-                        <h5 class="blue-text mb-0">Total</h5>
-                        <p><span>230</span></p>
-                    </div>
-                    <div class="card-right">
-                        <div class="card-image-wrapper blue">
                             <img src="{{asset('assets/image/folder.png')}}" alt="">
                         </div>
                     </div>

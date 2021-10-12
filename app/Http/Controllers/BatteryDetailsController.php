@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
-use App\Models\BatteryStatus;
+use App\Models\BatteryDetails;
 
-class BatteryStatusController extends Controller
+class BatteryDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class BatteryStatusController extends Controller
      */
     public function index()
     {
-        $fuels = BatteryStatus::with('vehicleDetail');
+        $fuels = BatteryDetails::with('vehicleDetail');
         if (auth()->user()->user_type === 2) {
             $vehicleIds = Vehicle::where('vendor_id', auth()->id())->pluck('id');
             $fuels = $fuels->whereIn('vehicle_id', $vehicleIds);
@@ -54,17 +54,25 @@ class BatteryStatusController extends Controller
             "start_meter" => "required|numeric",
             "refference" => "required",
             "qty" => "required|numeric",
+            "qty" => "required|numeric",
+            "qty" => "required|numeric",
+            "type" => "required",
+            "capacity" => "required",
+            "brand" => "required",
             "price" => "required|numeric",
             "date" => "required",
             "state" => "required",
             "note" => "required"
         ]);
 
-        $fuel = new BatteryStatus();
+        $fuel = new BatteryDetails();
         $fuel->vehicle_id = $req->vehicle_id;
         $fuel->start_meter = $req->start_meter;
         $fuel->refference = $req->refference;
         $fuel->qty = $req->qty;
+        $fuel->type = $req->type;
+        $fuel->capacity = $req->capacity;
+        $fuel->brand = $req->brand;
         $fuel->price = $req->price;
         $fuel->date = $req->date;
         $fuel->state = $req->state;
@@ -92,14 +100,14 @@ class BatteryStatusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($batteryStatusId)
+    public function edit($BatteryDetailsId)
     {
         $vehicles = Vehicle::select('*');
         if (auth()->user()->user_type === 2) {
             $vehicles = $vehicles->where('vendor_id', auth()->id());
         }
         $vehicles = $vehicles->get();
-        $fuel = BatteryStatus::find(base64_decode($batteryStatusId));
+        $fuel = BatteryDetails::find(base64_decode($BatteryDetailsId));
         return view('modules.battery-status.edit', compact('fuel', 'vehicles'));
     }
 
@@ -114,29 +122,36 @@ class BatteryStatusController extends Controller
     {
         // dd($req-> all());
         $req->validate([
-            "fuel_id" => "required|numeric|min:1",
+            "batteryDetailsId" => "required",
             "vehicle_id" => "required|numeric|min:1",
             "start_meter" => "required|numeric",
             "refference" => "required",
             "qty" => "required|numeric",
+            "type" => "required",
+            "capacity" => "required",
+            "brand" => "required",
             "price" => "required|numeric",
             "date" => "required",
             "state" => "required",
             "note" => "required"
         ]);
 
-        $fuel = BatteryStatus::find(base64_decode($fuel_id));
+        $fuel = BatteryDetails::find(base64_decode($req->batteryDetailsId));
+        // dd($fuel);
         $fuel->vehicle_id = $req->vehicle_id;
         $fuel->start_meter = $req->start_meter;
         $fuel->refference = $req->refference;
         $fuel->qty = $req->qty;
+        $fuel->type = $req->type;
+        $fuel->capacity = $req->capacity;
+        $fuel->brand = $req->brand;
         $fuel->price = $req->price;
         $fuel->date = $req->date;
         $fuel->state = $req->state;
         $fuel->note = $req->note;
         $fuel->save();
 
-        return redirect()->route('admin.vehicles.list')
+        return redirect()->route('admin.battery-status.list')
         ->with('Success','Vehicle updated SuccessFully');
     }
 
@@ -148,7 +163,7 @@ class BatteryStatusController extends Controller
      */
     public function delete($fuelId)
     {
-        $fuel = BatteryStatus::findOrFail(base64_decode($fuelId));
+        $fuel = BatteryDetails::findOrFail(base64_decode($fuelId));
         if($fuel){
             $fuel->delete();
             return redirect()->route('admin.battery-status.list')
