@@ -183,6 +183,7 @@
 @endsection
 
 @section('script')
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPuZ9AcP4PHUBgbUsT6PdCRUUkyczJ66I&libraries=places,geometry&callback=initMap&v=weekly" async defer></script>
 <script>
     function initMap() {
       const map = new google.maps.Map(document.getElementById("map"), {

@@ -46,6 +46,12 @@
                         $mainArr = explode("-", $item);
                     @endphp
                     <div class="row" id="geoFenceId{{$key+1}}">
+                        <div class="col-lg-6 pl-0">
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location{{$key+1}}" onfocus="initialize({{$key+1}})"  class="form-control col-lg-3" placeholder="Enter a location">
+                            </div>
+                        </div>
                         <div class="col-lg-5 pl-0 mb-2">
                             <div class="form-group">
                                 <label for="field1">Latitude</label>
@@ -81,18 +87,37 @@
 @endsection
 
 @section('script')
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPuZ9AcP4PHUBgbUsT6PdCRUUkyczJ66I&libraries=places,geometry&callback=initMap&v=weekly"></script>
 <script>
+    google.maps.event.addDomListener(window,'load',initialize(1));
+
     function addGeoFencing(buttonId) {
         $("#locations_number").val( parseInt($("#locations_number").val()) + 1 );
         // alert($("#locations_number").val());
         let num = $("#locations_number").val();
         let latLon = '';
-        latLon += '<div class="row" id="geoFenceId'+num+'"><div class="col-lg-5 pl-0 mb-2"><div class="form-group"><label for="field1">Latitude</label><input type="text" id="lat'+num+'" name="lat[]" class="form-control" onkeypress="return isNumberKey(event)"></div></div><div class="col-lg-5 pl-0"><div class="form-group"><label for="field1">Longitude</label><input type="text" id="lon'+num+'" name="lon[]" class="form-control" onkeypress="return isNumberKey(event)"></div></div><div class="col-lg-1"><button type="button" onclick="removeGeoFencing('+num+')" class="btn btn-danger btn-sm" style="margin-top:35px;">X</button></div></div>';
+        latLon += '<div class="row" id="geoFenceId'+num+'"><div class="col-lg-6 pl-0"><div class="form-group"><label for="location">Location</label><input type="text" id="location'+num+'"  class="form-control col-lg-3" placeholder="Enter a location"></div></div><div class="col-lg-5 pl-0 mb-2"><div class="form-group"><label for="field1">Latitude</label><input type="text" id="lat'+num+'" name="lat[]" class="form-control" onkeypress="return isNumberKey(event)"></div></div><div class="col-lg-5 pl-0"><div class="form-group"><label for="field1">Longitude</label><input type="text" id="lon'+num+'" name="lon[]" class="form-control" onkeypress="return isNumberKey(event)"></div></div><div class="col-lg-1"><button type="button" onclick="removeGeoFencing('+num+')" class="btn btn-danger btn-sm" style="margin-top:35px;">X</button></div></div>';
 
         $("#geo-fencing").append(latLon);
+        initialize(num);
     }
     function removeGeoFencing(latLonNum) {
         $("#geoFenceId"+latLonNum).empty();
+    }
+
+    function initialize(num){
+        console.log(num);
+        var autocomplete= new google.maps.places.Autocomplete(document.getElementById('location'+num));
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function(){
+
+            var places = autocomplete.getPlace();
+            // console.log(places);
+            $('#location'+num).val(places.formatted_address);
+            $('#lon'+num).val(places.geometry.location.lng());
+            $('#lat'+num).val(places.geometry.location.lat());
+
+        });
     }
 </script>
 @endsection
