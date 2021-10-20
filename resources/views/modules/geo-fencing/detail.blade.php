@@ -35,22 +35,41 @@ function initMap() {
 
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 12,
-        center: coords[0],
+        center: {lat: coords[0]["lat"], lng: coords[0]["lng"]},
     });
-  // Define the LatLng coordinates for the polygon's path.
+//   // Define the LatLng coordinates for the polygon's path.
     
-    const boundingCoords = coords;
-  // Construct the polygon.
-    const boundingArea = new google.maps.Polygon({
-        paths: boundingCoords,
+//     const boundingCoords = coords;
+//   // Construct the polygon.
+//     const boundingArea = new google.maps.Polygon({
+//         paths: boundingCoords,
+//         strokeColor: "#4723d9",
+//         strokeOpacity: 0.8,
+//         strokeWeight: 2,
+//         fillColor: "#4723d9",
+//         fillOpacity: 0.35,
+//     });
+
+//     boundingArea.setMap(map);
+
+    //adding marker
+    new google.maps.Marker({
+        position: {lat: coords[0]["lat"], lng: coords[0]["lng"]},
+        map,
+        title: "Hello World!",
+    });
+
+    // Add the circle for this city to the map.
+    const cityCircle = new google.maps.Circle({
         strokeColor: "#4723d9",
         strokeOpacity: 0.8,
         strokeWeight: 2,
         fillColor: "#4723d9",
         fillOpacity: 0.35,
+        map,
+        center: {lat: coords[0]["lat"], lng: coords[0]["lng"]},
+        radius: coords[0]["radius"]*1000,
     });
-
-    boundingArea.setMap(map);
 }
 </script>
 @endsection

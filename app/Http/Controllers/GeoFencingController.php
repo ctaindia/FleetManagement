@@ -24,7 +24,8 @@ class GeoFencingController extends Controller
         $req->validate([
             "area" => "required",
             "lat" => "required",
-            "lon" => "required"
+            "lon" => "required",
+            "radius" => "required",
         ]);
         $geoFence = new GeoFencing;
         $geoFence->area = $req->area;
@@ -33,6 +34,7 @@ class GeoFencingController extends Controller
             array_push($locationArr, $req->lat[$key].'-'.$req->lon[$key]);
         }
         $geoFence->bounding = implode(",", $locationArr);
+        $geoFence->radius = $req->radius;
         $geoFence->save();
         return redirect()->route('admin.geo-fencing.index')
         ->with('Success','Geo Fencing added SuccessFully');
@@ -49,8 +51,10 @@ class GeoFencingController extends Controller
             $arrayVal = (object)[];
             $arrayVal->lat =  (float)$latLon[0];
             $arrayVal->lng =  (float)$latLon[1];
+            $arrayVal->radius =  (float)$geoFence->radius;
             array_push($boundingCoords,$arrayVal);
         }
+        
         // dd($boundingCoords);
         return view("modules.geo-fencing.detail", compact('geoFence', 'boundingCoords'));
     }
@@ -69,7 +73,8 @@ class GeoFencingController extends Controller
             "geFenceId" => "required",
             "area" => "required",
             "lat" => "required",
-            "lon" => "required"
+            "lon" => "required",
+            "radius" => "required"
         ]);
         $geoFence = GeoFencing::findOrFail(base64_decode($req->geFenceId));
         $geoFence->area = $req->area;
@@ -78,6 +83,7 @@ class GeoFencingController extends Controller
             array_push($locationArr, $req->lat[$key].'-'.$req->lon[$key]);
         }
         $geoFence->bounding = implode(",", $locationArr);
+        $geoFence->radius = $req->radius;
         $geoFence->save();
         return redirect()->route('admin.geo-fencing.index')
         ->with('Success','Geo Fencing updated SuccessFully');
