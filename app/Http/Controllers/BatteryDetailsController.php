@@ -152,7 +152,7 @@ class BatteryDetailsController extends Controller
         $fuel->save();
 
         return redirect()->route('admin.battery-status.list')
-        ->with('Success','Vehicle updated SuccessFully');
+        ->with('Success','Battery detail updated SuccessFully');
     }
 
     /**

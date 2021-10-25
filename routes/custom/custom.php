@@ -5,6 +5,9 @@
 	use App\Http\Controllers\VehicleTypeController;
 	use App\Http\Controllers\VehicleController;
 	use App\Http\Controllers\BatteryDetailsController;
+	use App\Http\Controllers\BatteryController;
+	use App\Http\Controllers\BatterySupplierController;
+	use App\Http\Controllers\BatteryTypeController;
 	use App\Http\Controllers\GeoFencingController;
 
 	
@@ -47,6 +50,30 @@
 		Route::get('edit/{id}', [BatteryDetailsController::class, 'edit'])->name('admin.battery-status.edit');
 		Route::post('update', [BatteryDetailsController::class, 'update'])->name('admin.battery-status.update');
 		Route::get('delete/{id}', [BatteryDetailsController::class, 'delete'])->name('admin.battery-status.delete');
+	});
+	Route::prefix('battery')->group(function () {
+		Route::get('list', [BatteryController::class, 'index'])->name('admin.battery.list');
+		Route::get('create', [BatteryController::class, 'create'])->name('admin.battery.create');
+		Route::post('store', [BatteryController::class, 'store'])->name('admin.battery.store');
+		Route::get('edit/{id}', [BatteryController::class, 'edit'])->name('admin.battery.edit');
+		Route::post('update', [BatteryController::class, 'update'])->name('admin.battery.update');
+		Route::get('delete/{id}', [BatteryController::class, 'delete'])->name('admin.battery.delete');
+	});
+	Route::prefix('battery-type')->group(function () {
+		Route::get('list/{id?}', [BatteryTypeController::class, 'index'])->name('admin.battery-type.list');
+		Route::get('create', [BatteryTypeController::class, 'create'])->name('admin.battery-type.create');
+		Route::post('store', [BatteryTypeController::class, 'store'])->name('admin.battery-type.store');
+		Route::get('edit/{id}', [BatteryTypeController::class, 'edit'])->name('admin.battery-type.edit');
+		Route::post('update', [BatteryTypeController::class, 'update'])->name('admin.battery-type.update');
+		Route::get('delete/{id}', [BatteryTypeController::class, 'delete'])->name('admin.battery-type.delete');
+	});
+	Route::prefix('battery-supplier')->group(function () {
+		Route::get('list/{id?}', [BatterySupplierController::class, 'index'])->name('admin.battery-supplier.list');
+		Route::get('create', [BatterySupplierController::class, 'create'])->name('admin.battery-supplier.create');
+		Route::post('store', [BatterySupplierController::class, 'store'])->name('admin.battery-supplier.store');
+		Route::get('edit/{id}', [BatterySupplierController::class, 'edit'])->name('admin.battery-supplier.edit');
+		Route::post('update', [BatterySupplierController::class, 'update'])->name('admin.battery-supplier.update');
+		Route::get('delete/{id}', [BatterySupplierController::class, 'delete'])->name('admin.battery-supplier.delete');
 	});
 	Route::prefix('geo-fencing')->group(function () {
 		Route::get('/', [GeoFencingController::class, 'index'])->name('admin.geo-fencing.index');

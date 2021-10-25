@@ -10,6 +10,9 @@
                 <a href="{{route('admin.vehicle.type.list')}}" class="nav_link {{request()->routeIs('admin.vehicle.type*')? 'active' : ''}}"> <i class='bx bx-category nav_icon'></i> <span class="nav_name">Vehicle Type</span> </a>
                 <a href="{{route('admin.vehicles.list')}}" class="nav_link {{request()->routeIs('admin.vehicles*')? 'active' : ''}}"> <i class='bx bx-car nav_icon'></i> <span class="nav_name">Vehicle</span> </a>
                 <a href="{{route('admin.battery-status.list')}}" class="nav_link {{request()->routeIs('admin.battery-status*')? 'active' : ''}}"> <i class='bx bxs-car-battery nav_icon'></i> <span class="nav_name">Battery Details</span> </a> 
+                <a href="{{route('admin.battery.list')}}" class="nav_link {{request()->routeIs('admin.battery.*')? 'active' : ''}}"> <i class='bx bxs-car-battery nav_icon'></i> <span class="nav_name">Batteries</span> </a> 
+                <a href="{{route('admin.battery-type.list')}}" class="nav_link {{request()->routeIs('admin.battery-type*')? 'active' : ''}}"> <i class='bx bxs-car-battery nav_icon'></i> <span class="nav_name">Battery Type</span> </a> 
+                <a href="{{route('admin.battery-supplier.list')}}" class="nav_link {{request()->routeIs('admin.battery-supplier*')? 'active' : ''}}"> <i class='bx bxs-car-battery nav_icon'></i> <span class="nav_name">Battery Supplier</span> </a> 
                 @if (auth()->user()->user_type === 1)
                 <a href="{{route('admin.geo-fencing.index')}}" class="nav_link {{request()->routeIs('admin.geo-fencing*')? 'active' : ''}}"> <i class='bx bx-map-pin nav_icon'></i> <span class="nav_name">Geo Fencing</span> </a>
                 @endif
